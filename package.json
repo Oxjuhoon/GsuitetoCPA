@@ -1,0 +1,24 @@
+{
+  "name": "gsuite-to-cpa",
+  "version": "1.0.0",
+  "description": "Bulk add & manage Google accounts on CPA (CLIProxyAPI) Antigravity provider via management API",
+  "main": "bot.js",
+  "scripts": {
+    "bot": "node bot.js",
+    "delete": "node delete.js",
+    "check": "node check.js"
+  },
+  "keywords": [
+    "cpa",
+    "cliproxy",
+    "antigravity",
+    "google",
+    "oauth",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.43.1"
+  }
+}
