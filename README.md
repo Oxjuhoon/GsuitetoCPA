@@ -25,9 +25,16 @@ npm run bot
 ### Hapus akun
 ```bash
 npm run delete            # hapus otomatis akun yang 429 (quota habis) & 403 (tidak punya entitlement)
+npm run delete -- --failed [N]   # tanpa tes: hapus akun dengan failed counter >= N (default 5)
+npm run delete -- --opus         # tes opus nyata (paralel blast + verifikasi serial) — KONSUMSI QUOTA
 npm run delete -- user@x.com user@y.com   # hapus hanya email tertentu
 npm run delete -- --dry-run               # cek dulu tanpa menghapus
 ```
+
+Catatan mode:
+- `--failed [N]`: murni baca counter `failed` (lifetime, semua model), **0 request chat**. Gratis tapi kasar — tidak spesifik model, dan `failed` juga naik dari error transient/403, jadi ada risiko salah hapus akun yang masih sehat.
+- `--opus`: tes `claude-opus-4-6-thinking` sungguhan per akun (akurat) tapi **menghabiskan quota** akun yang masih punya sisa — jangan dipakai jika akun bukan milik sendiri.
+- Status 429 yang tercatat di `status_message` hilang otomatis dalam hitungan menit (cooldown/reconcile), jadi mode default hanya berguna segera setelah error terjadi.
 
 ### Cek status akun (read-only)
 ```bash
